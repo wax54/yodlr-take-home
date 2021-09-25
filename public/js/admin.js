@@ -11,10 +11,18 @@ async function updateUsers() {
 }
 
 function updateUserCards() {
-    for(let id in users){
-        const user = users[id];
+    clearCards();
+    const allUsers = Object.values(users).sort((a, b) => {
+        if(a.state !== b.state) {
+            return a.state === "pending" ? -1 : 1;
+        } else {
+            return a.firstName < b.firstName ? -1 : 1;
+        }
+    });
+    for(let user of allUsers){
         const card = createUserCard(user);
-        updateCard(id, card);
+
+        addCard(card);
     }
 }
 
@@ -41,12 +49,11 @@ function create(tag, text = "") {
 }
 
 async function handleTogglePendingClick(evt) {
-    console.log("HELLO!");
     const id = +evt.target.parentElement.dataset.id;
     togglePending(users[id]);
+
     //update the UI
-    const newUserCard = createUserCard(users[id]);
-    updateCard(id, newUserCard);
+    updateUserCards();
 
     //make the API call to update the state serverside
     await UserApi.update(users[id]);
@@ -63,22 +70,16 @@ function togglePending(user) {
 }
 
 
-function updateCard(id, card) {
-    //if on DOM, remove it
-    removeCard(id);
-    //add the card to the DOM
-    if (users[id].state === "pending") {
-        console.log("prepeding")
-        usersList.prepend(card);
-    } else {
-        console.log("appending")
-        usersList.append(card);
-    }
-    
+function addCard(card) {
+    usersList.append(card);
 }
 
 function removeCard(id) {
     const oldCard = document.getElementById(`user-card-${id}`);
     if(oldCard)
         oldCard.remove();
+}
+
+function clearCards(card) {
+    usersList.innerHTML = "";
 }
