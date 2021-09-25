@@ -1,0 +1,9 @@
+.userCard.pending {
+    background-color: rgb(255, 182, 193); 
+    border: 4px solid rgb(235, 148, 160);
+}
+.userCard.active {
+    background-color: rgb(18, 218, 18);
+    border: 4px solid rgb(12, 179, 12);
+
+}
