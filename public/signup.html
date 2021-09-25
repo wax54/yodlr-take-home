@@ -3,15 +3,28 @@
 <head>
   <meta charset=utf-8>
   <title>Yodlr Registration Portal</title>
+
 </head>
 <body>
   <h1>Yodlr Registration Portal</h1>
-  <form>
-    Email: <input type="email" name="email"></br>
+  <form id="signup-form">
+    <Label for="email-input">Email: </Label>
+    <input id="email-input" type="email" name="email" required></br>
+
+    <Label for="first-name-input">First Name:</Label>
+    <input id="first-name-input" type="text" name="first-name" required></br>
+
+    <Label for="last-name-input">Last Name: </Label>
+    <input id="last-name-input" type="text" name="last-name" required></br>
+    
     <button type="submit">Submit</button>
   </form>
   <p>
     <a href="/admin.html">Admin Page</a>
   </p>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/js/UserApi.js"></script>
+  <script src="/js/signup.js" ></script>
 </body>
 </html>
