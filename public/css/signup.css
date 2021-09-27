@@ -1,0 +1,31 @@
+/* #signup-form {
+    margin: 1rem;
+    text-align: center;
+    background-color: darkgray;
+
+}
+
+#signup-form > .input-container {
+    font-size: 2rem;
+    background-color: darkgray;
+}
+
+.input-container{
+    padding: 1rem;
+    display: inline-block;
+}
+.input-container > label{
+    padding: .5rem;
+    border: 3px solid darkgrey;
+    border-right-width: 0px;
+    border-radius: 1rem 0rem 0rem 1rem;
+    background-color: lightgrey;
+    
+}
+.input-container > input {
+    padding: .45rem;
+    font-size: 2rem;
+}
+.input-container * {
+    display: inline-block;
+} */

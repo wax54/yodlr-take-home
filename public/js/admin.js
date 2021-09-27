@@ -36,10 +36,14 @@ function updateUserCards() {
 }
 
 function createUserCard(user) {
+    const [ userColor, userBtnText ] = user.state === "pending" ? 
+        ["danger", "Activate!"] : 
+        ["success", "Deactivate"];
+    
     const container = document.createElement("div");
     container.id = `user-card-${user.id}`;
     container.dataset.id = user.id;
-    container.className = `userCard ${user.state}`;
+    container.className = `userCard bg-${userColor}`;
 
     const emailDiv = create("div", user.email);
     emailDiv.className = "email";
@@ -47,9 +51,9 @@ function createUserCard(user) {
     const nameDiv = create("div", fullName);
     nameDiv.className = "name";
 
-    const stateBtn = create("button", user.state);
+    const stateBtn = create("button", userBtnText);
     stateBtn.addEventListener("click", handleTogglePendingClick);
-    stateBtn.className = "btn";
+    stateBtn.className = `btn btn-${userColor}`;
 
 
     container.append(emailDiv, nameDiv, stateBtn);
