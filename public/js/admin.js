@@ -42,10 +42,15 @@ function createUserCard(user) {
     container.className = `userCard ${user.state}`;
 
     const emailDiv = create("div", user.email);
+    emailDiv.className = "email";
     const fullName = user.firstName +" " + user.lastName;
     const nameDiv = create("div", fullName);
+    nameDiv.className = "name";
+
     const stateBtn = create("button", user.state);
-    stateBtn.onclick = handleTogglePendingClick;
+    stateBtn.addEventListener("click", handleTogglePendingClick);
+    stateBtn.className = "btn";
+
 
     container.append(emailDiv, nameDiv, stateBtn);
     return container;

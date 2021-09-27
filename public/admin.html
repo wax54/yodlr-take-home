@@ -6,23 +6,32 @@
   <link rel="stylesheet" href="/css/users-list.css" />
 </head>
 <body>
+  <div id="user-container">
 
-  <div id="pending-users-list">
-    <!-- <div id="UserCard-1" data-id="1" style="background-color: rgb(255, 182, 193); border: 4px solid rgb(235, 148, 160);">
-      <div>{{Email}}</div>
-      <div>first-name last-name</div>
-      <button class="btn">Pending</button>
-    </div> -->
-  </div>
-  <div id="active-users-list" > 
-    <!-- 
-    <div id="UserCard-1" data-id="12" style="background-color: lightgreen;">
-      <div>{{Email}}</div>
-      <div>first-name last-name</div>
-      <button class="btn">Active</button>
-    </div> -->
+    <div class="pending-user-container">
+      <h2 class="user-list-header">Pending: </h2>
+      <div id="pending-users-list">
+        <!-- Pending Users will populate here -->
+      </div>
+    </div>
+
+    <div class="active-user-container">
+      <h2 class="user-list-header"> Active: </h2>
+      <div id="active-users-list" > 
+          <!-- Active Users will populate here -->
+      </div>
+    </div>
+
   </div>
 
+
+    <!-- <div id="test-users-list">
+          <div id="UserCard-0" data-id="1" class="userCard pending">
+            <div class="name">Jackie Smith</div>
+            <div class="email">wax654@gmail.com</div>
+            <button class="btn">Pending</button>
+          </div>
+        </div> -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/js/UserApi.js"></script>
   <script src="/js/admin.js"></script>
