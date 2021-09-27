@@ -1,9 +1,22 @@
-const usersList = document.getElementById("users-list");
+const activeUsersList = document.getElementById("active-users-list");
+const pendingUsersList = document.getElementById("pending-users-list");
 let users = {};
 updateUsers();
 
-
-
+const sort = {
+    firstName: function (a, b) {
+        return a.firstName < b.firstName ? -1 : 1;
+    },
+    stateThenFirstName: function(a, b) {
+        if (a.state !== b.state) {
+            //if the states are different, put the pending one before the active one
+            return a.state === "pending" ? -1 : 1;
+        } else {
+            //otherwise, organize by first name
+            return a.firstName < b.firstName ? -1 : 1;
+        }
+    }
+}
 async function updateUsers() {
     const allUsers = await UserApi.getAll();
     allUsers.forEach(user => users[user.id] = user );
@@ -12,17 +25,13 @@ async function updateUsers() {
 
 function updateUserCards() {
     clearCards();
-    const allUsers = Object.values(users).sort((a, b) => {
-        if(a.state !== b.state) {
-            return a.state === "pending" ? -1 : 1;
-        } else {
-            return a.firstName < b.firstName ? -1 : 1;
-        }
-    });
+
+    const allUsers = Object.values(users).sort(sort.firstName);;
     for(let user of allUsers){
         const card = createUserCard(user);
-
-        addCard(card);
+        (user.state === "active") ? 
+            addActiveCard(card) :
+            addPendingCard(card)
     }
 }
 
@@ -50,28 +59,30 @@ function create(tag, text = "") {
 
 async function handleTogglePendingClick(evt) {
     const id = +evt.target.parentElement.dataset.id;
-    togglePending(users[id]);
-
+    togglePending(id);
     //update the UI
     updateUserCards();
-
     //make the API call to update the state serverside
     await UserApi.update(users[id]);
 
 }
 
-function togglePending(user) {  
+/** toggles the state of the user with the given ID in memory 
+ * (throws error on invalid ID)
+*/
+function togglePending(id) {  
     //getting new State
-    const updatedState = user.state === "pending" ? "active" : "pending";
-    //working with the updated user object
-    user = { ...user, state: updatedState };
-    //updating the users state client side 
-    users[user.id] = user;
+    const updatedState = users[id].state === "pending" ? "active" : "pending";
+    //updating the users state in memory 
+    users[id].state = updatedState;
 }
 
 
-function addCard(card) {
-    usersList.append(card);
+function addActiveCard(card) {
+    activeUsersList.append(card);
+}
+function addPendingCard(card) {
+    pendingUsersList.append(card);
 }
 
 function removeCard(id) {
@@ -81,5 +92,7 @@ function removeCard(id) {
 }
 
 function clearCards(card) {
-    usersList.innerHTML = "";
+    pendingUsersList.innerHTML = "";
+    activeUsersList.innerHTML = "";
+
 }
