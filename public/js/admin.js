@@ -17,6 +17,7 @@ const sort = {
         }
     }
 }
+
 async function updateUsers() {
     const allUsers = await UserApi.getAll();
     allUsers.forEach(user => users[user.id] = user );
@@ -28,22 +29,22 @@ function updateUserCards() {
 
     const allUsers = Object.values(users).sort(sort.firstName);;
     for(let user of allUsers){
-        const card = createUserCard(user);
-        (user.state === "active") ? 
-            addActiveCard(card) :
-            addPendingCard(card)
+        const card = addUserCard(user);
     }
 }
 
-function createUserCard(user) {
-    const [ userColor, userBtnText ] = user.state === "pending" ? 
-        ["danger", "Activate!"] : 
-        ["success", "Deactivate"];
+
+
+function addUserCard(user) {
     
-    const container = document.createElement("div");
-    container.id = `user-card-${user.id}`;
-    container.dataset.id = user.id;
-    container.className = `userCard bg-${userColor}`;
+    const { userColor, userBtnText, addCardFunction } = user.state === "active" ? 
+           {userColor: "success", userBtnText: "DEACTIVATE", addCardFunction: addActiveCard } :
+           {userColor: "danger", userBtnText: "ACTIVATE", addCardFunction: addPendingCard };
+           
+    const userCard = document.createElement("div");
+    userCard.id = `user-card-${user.id}`;
+    userCard.dataset.id = user.id;
+    userCard.className = `userCard bg-${userColor}`;
 
     const emailDiv = create("div", user.email);
     emailDiv.className = "email";
@@ -54,10 +55,8 @@ function createUserCard(user) {
     const stateBtn = create("button", userBtnText);
     stateBtn.addEventListener("click", handleTogglePendingClick);
     stateBtn.className = `btn btn-${userColor}`;
-
-
-    container.append(emailDiv, nameDiv, stateBtn);
-    return container;
+    userCard.append(emailDiv, nameDiv, stateBtn);
+    addCardFunction(userCard);
 }
 
 function create(tag, text = "") {
@@ -87,10 +86,19 @@ function togglePending(id) {
 }
 
 
+const noPendingUsersHTML = "<h2> All Done You Did Great! </h2>";
+const noActiveUsersHTML = "<h2> What Are You Doing? Start Activating! </h2>";
+
+
 function addActiveCard(card) {
+    console.log("adding active", card);
+    if(activeUsersList.innerHTML === noActiveUsersHTML) activeUsersList.innerHTML = "";
     activeUsersList.append(card);
 }
 function addPendingCard(card) {
+    console.log("adding pending", card);
+
+    if(pendingUsersList.innerHTML === noPendingUsersHTML) pendingUsersList.innerHTML = "";
     pendingUsersList.append(card);
 }
 
@@ -101,7 +109,6 @@ function removeCard(id) {
 }
 
 function clearCards(card) {
-    pendingUsersList.innerHTML = "";
-    activeUsersList.innerHTML = "";
-
+    pendingUsersList.innerHTML = noPendingUsersHTML;
+    activeUsersList.innerHTML = noActiveUsersHTML;
 }

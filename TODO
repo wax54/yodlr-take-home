@@ -1,0 +1,3 @@
+I, as an admin want a nice page to look at when I log in
+    - I want to be able to get to the admin page from the signup page. 
+    - I want to be able to go home from the admin page

@@ -10,6 +10,8 @@
 }
 
 .userCard {
+    color: white;
+
     position: relative;
     border-radius: .25rem;
     margin: 10px;
@@ -40,6 +42,7 @@
 }
 
 .pending-user-container {
+    
     padding: 1.5rem;
     margin: 0px 0.5rem;
     background-color: rgb(255, 198, 215); 
@@ -52,6 +55,7 @@
 }
 
 .userCard.pending {
+    
     background-color: rgb(255, 182, 193); 
     border: 4px solid rgb(235, 148, 160);
 }

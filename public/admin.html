@@ -2,32 +2,40 @@
 <html>
 <head>
   <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Yodlr Admin Page</title>
   <link rel="stylesheet" href="/css/users-list.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="/css/index.css" />
 
 </head>
 <body>
-  <div id="user-container">
+  
+  <div class="container">
+    
+    <div class="row justify-content-center">
+    <div id="user-container col-12">
 
-    <div class="pending-user-container">
-      <h2 class="user-list-header">Pending: </h2>
-      <div id="pending-users-list">
-        <!-- Pending Users will populate here -->
+      <div class="pending-user-container rounded">
+        <h2 class="user-list-header">Pending: </h2>
+        <div id="pending-users-list">
+          <!-- Pending Users will populate here -->
+        </div>
+      </div>
+
+      <div class="active-user-container rounded">
+        <h2 class="user-list-header"> Active: </h2>
+        <div id="active-users-list" > 
+            <!-- Active Users will populate here -->
+        </div>
       </div>
     </div>
-
-    <div class="active-user-container">
-      <h2 class="user-list-header"> Active: </h2>
-      <div id="active-users-list" > 
-          <!-- Active Users will populate here -->
-      </div>
+      <a href="/index.html" class="btn btn-secondary m-3 p-2 col-11">Go Home</a>
     </div>
-
   </div>
-
-
     <!-- <div id="test-users-list">
           <div id="UserCard-0" data-id="1" class="userCard pending">
             <div class="name">Jackie Smith</div>

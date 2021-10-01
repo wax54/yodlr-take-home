@@ -3,29 +3,34 @@
 <head>
   <meta charset=utf-8>
   <title>Yodlr Registration Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/signup.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-</head>
-<body>
-  <h1>Yodlr Registration Portal</h1>
+  
+  <link rel="stylesheet" href="/css/index.css" />
 
-  <form class="m-3" id="signup-form">
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="email-input">Email: </Label>
-      <input class="form-control" id="email-input" type="email" name="email" required>
-    </div>
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="first-name-input">First Name: </label>
-      <input class="form-control" id="first-name-input" type="text" name="first-name" required>
-      <label class="input-group-text" for="last-name-input">Last Name: </Label>
-      <input class="form-control" id="last-name-input" type="text" name="last-name" required>
-    </div>
-    <button type="submit" class="form-control btn-primary">Submit</button>
-  </form>
-  <p>
-    <a href="/admin.html">Admin Page</a>
-  </p>
+  </head>
+<body>
+  <div class="container">
+    <h1>Yodlr Registration Portal</h1>
+
+    <form class="m-3" id="signup-form">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="email-input">Email: </Label>
+        <input class="form-control" id="email-input" type="email" name="email" required>
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="first-name-input">First Name: </label>
+        <input class="form-control" id="first-name-input" type="text" name="first-name" required>
+        <label class="input-group-text" for="last-name-input">Last Name: </Label>
+        <input class="form-control" id="last-name-input" type="text" name="last-name" required>
+      </div>
+      <button type="submit" class="form-control btn-success p-2 mb-2">Signup!</button>
+      <a href="/admin.html" class="btn form-control btn-secondary p-2 mb-2">Already A User?</a>
+    </form>
+
+  </div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/js/UserApi.js"></script>
